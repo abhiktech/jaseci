@@ -29,3 +29,9 @@ graph faq {
         faq_root --> faq_answer_3;
     }
 }
+
+walker init {
+    root {
+        spawn here --> graph::faq;
+    }
+}
