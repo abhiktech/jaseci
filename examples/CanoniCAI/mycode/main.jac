@@ -89,5 +89,3 @@ walker ingest_faq {
         }
     }
 }
-
-
