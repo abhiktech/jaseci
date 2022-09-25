@@ -4,6 +4,18 @@ node dialogue_state {
     can bi_enc.infer;
     can tfm_ner.extract_entity;
 
+    can extract_entities {
+        res = tfm_ner.extract_entity(visitor.question);
+        for ent in res {
+            ent_type = ent["entity_value"];
+            ent_text = ent["entity_text"];
+            if (!(ent_type in visitor.wlk_ctx["entities"])){
+                visitor.wlk_ctx["entities"][ent_type] = [];
+            }
+            visitor.wlk_ctx["entities"][ent_type].l::append(ent_text);
+        }
+    }
+
     can classify_intent {
         intent_labels = -[intent_transition]->.edge.intent;
         visitor.wlk_ctx["intent"] = bi_enc.infer(
