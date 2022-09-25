@@ -14,6 +14,10 @@ node dialogue_state {
         )[0]["predicted"]["label"];
     }
 
+    edge entity_transition {
+        has entities;
+    }
+
     can extract_entities {
         // Entity extraction logic will be added a bit later on.
     }
@@ -155,6 +159,7 @@ graph dialogue_system {
         dialogue_root -[intent_transition(intent="order a tesla")]-> how_to_order_state;
     }
 }
+
 
 walker init {
     root {
